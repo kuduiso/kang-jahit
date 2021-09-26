@@ -1,0 +1,337 @@
+@font-face {
+    font-family: "Open Sans";
+    src: url("OpenSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Open Sans-Bold";
+    src: url("OpenSans-Bold.ttf") format("truetype");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #EFF8FF;
+  padding: 0px;
+  margin: 0px;
+}
+
+.logo {
+    margin: 8px 8px;
+    height: 120px;
+    text-align: center;
+    padding: 14px 0px;
+    font-size: 20px;
+}
+
+.sidebar {
+  font-family: "Open Sans-Bold", sans-serif;
+  height: 100%;
+  width: 20%;
+  position: fixed;
+  background-color: #7FDBDA;
+  float: left;
+}
+
+.orange-light {
+  color: #FDF2CA;
+}
+
+#btnLog {
+  display: block;
+  width: 75%;
+  border: 0px;
+  border-radius: 8px;
+  margin: 4px auto;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 8px;
+  text-align: center;
+  background-color: #FEBF63;
+  color: #ffffff;
+}
+
+#btnLog:hover {
+  background-color: #ffaf3b;
+}
+
+.menu-item {
+  background-color: #FEBF63;
+  text-decoration: none;
+  color: #ffffff;
+  padding: 8px;
+  display: block;
+  margin: 8px 32px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.menu-item:hover {
+  background-color: #ffaf3b;
+}
+
+#content {
+  font-family: "Open Sans", sans-serif;
+  width: 80%;
+  float: right;
+}
+
+.box-home {
+  text-align: center;
+  padding: 195px 0px;
+  height: 100%;
+}
+
+.box-order {
+  padding: 120px 10px;
+  height: 100%;
+}
+
+.box-about {
+  padding: 120px 10px;
+}
+
+.box-list-order {
+  padding: 8px 8px;
+}
+
+.bg-about {
+  background-color: #ffffff;
+  border: 1px solid #c4c4c4;
+  max-width: 420px;
+  padding: 12px 24px;
+  margin: 0px auto;
+}
+
+.bg-list-order {
+  background-color: #ffffff;
+  padding: 12px;
+}
+
+p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+}
+
+h3 {
+  font-family: "Open Sans-Bold", sans-serif;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-14 {
+  font-size: 14px;
+}
+
+.text-12 {
+  font-size: 12px;
+}
+
+.link-none {
+  text-decoration: none;
+}
+
+.btn-insert {
+  background-color: #61B15A;
+  color: #ffffff;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.btn-insert:hover {
+  background-color: #51994b;
+}
+
+.btn-view {
+  background-color: #545C77;
+  padding: 4px 12px;
+  color: #ffffff;
+  border-radius: 4px;
+}
+
+.btn-edit {
+  background-color: #5479FA;
+  padding: 4px 12px;
+  color: #ffffff;
+  border-radius: 4px;
+}
+
+.btn-delete {
+  background-color: #E73F1A;
+  padding: 4px 12px;
+  color: #ffffff;
+  border-radius: 4px;
+}
+
+.btn-view:hover {
+  background-color: #474e66;
+}
+
+.btn-edit:hover {
+  background-color: #4869db;
+}
+
+.btn-delete:hover {
+  background-color: #c93716;
+}
+
+.btn-none {
+  border: 0px;
+}
+
+.form-container {
+  background-color: #ffffff;
+  border: 1px solid #C4C4C4;
+  max-width: 350px;
+  margin: 0px auto;
+  padding: 0px 45px;
+}
+
+@media (max-width: 1085px) {
+  .btn-delete {
+    margin-top: 2px;
+    display: block;
+  }
+
+  .btn-edit {
+    margin-top: 2px;
+    display: block;
+  }
+}
+
+@media (max-width: 380px) {
+  .form-container {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 805px) {
+  .sidebar {
+    width: 100%;
+    height: 100vh;
+    position: inherit;
+  }
+
+  .menu-item {
+    width: 200px;
+    margin: 15px auto;
+  }
+
+  .box-order {
+    padding: 50px 10px;
+  }
+
+  #btnLog {
+    width: 200px;
+    margin: 15px auto;
+  }
+
+  #content {
+    width: 100%;
+  }
+
+  .bg-list-order {
+    overflow: scroll;
+  }
+}
+
+.form-container label {
+  font-size: 13px;
+}
+
+.input-control {
+  margin: 2px 0px;
+}
+
+input {
+  display: block;
+  padding: 4px;
+  border: 1px solid black;
+}
+
+.err-msg {
+  display: block;
+  color: #ff2212;
+}
+
+.border-red {
+  border-color: #ff2212;
+}
+
+.mt-15 {
+  margin-top: 15px;
+}
+
+.mb-15 {
+  margin-bottom: 15px;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table,
+tr,
+th,
+td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.img-referensi img {
+  max-width: 75px;
+}
+
+/* TAMBAHAN BUAT LOGIN */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+  text-align: center; 
+}
+
+.modal-content input {
+  margin: 2px auto;
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* END TAMBAHAN BUAT LOGIN */

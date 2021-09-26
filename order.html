@@ -1,0 +1,35 @@
+<div class="box-order">
+  <div class="form-container">
+    <form id="formOrder" method="post" enctype="multipart/form-data">
+      <h3 class="text-center">Order</h3>
+      <div class="input-control">
+        <label for="nama">Nama:</label>
+        <input type="text" name="nama" id="nama" placeholder="Masukkan nama">
+        <span class="err-msg text-12"></span>
+      </div>
+      <div class="input-control">
+        <label for="keterangan">Keterangan:</label> <br>
+        <textarea name="keterangan" id="keterangan" rows="4" cols="25" placeholder="Masukkan keterangan"></textarea>
+        <span class="err-msg text-12"></span>
+      </div>
+      <div class="input-control">
+        <label for="tgl_masuk">Tanggal Masuk:</label>
+        <input type="date" name="tgl_masuk" id="tgl_masuk">
+        <span class="err-msg text-12"></span>
+      </div>
+      <div class="input-control">
+        <label for="tgl_jadi">Tanggal Jadi:</label>
+        <input type="date" name="tgl_jadi" id="tgl_jadi">
+        <span class="err-msg text-12"></span>
+      </div>
+      <div class="input-control">
+        <label for="file_ref">Referensi:</label>
+        <input type="file" name="file_ref" id="file_ref">
+      </div>
+    </form>
+
+    <div class="flex-center">
+      <button name="simpan"id="simpanOrder" class="btn-insert btn-none mt-15 mb-15">Make Order</button>
+    </div>
+  </div>
+</div>

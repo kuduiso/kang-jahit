@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kang Jahit</title>
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+          <h1 class="orange-light">Kang Jahit</h1>
+      </div>
+      <div class="menu">
+          <a href="#home" class="menu-item">Home</a>
+          <a href="#order" class="menu-item">Order</a>
+          <a href="#list-order" class="menu-item">List Order</a>
+          <a href="#about" class="menu-item">About Us</a>
+          <button id="btnLog" class="btnLogin" onclick="cekLog()">Login</button>
+      </div>
+    </aside>
+
+    <!-- Ini Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h4>Silahkan Login</h4>
+        <label>Username: </label>
+        <input type="text" name="username">
+        <br>
+        <label>Password: </label>
+        <input type="password" name="pass">
+        <br>
+        <p id="pesanLogin"></p>
+        <br>
+        <button type="button" name="login" onclick="setSession()">Login</button>
+      </div>
+    </div>
+    <!-- Batas Modal -->
+
+    <section id="content">
+    </section>
+
+    <!-- SCRIPT JS -->
+    <script src="assets/js/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/nav.js"></script>
+    <script type="text/javascript">
+    // FUNGSI MENGHAPUS
+    function deleteData(id, img) {
+      $.ajax({
+        url: "http://localhost/uasweb/delete.php/?id="+id+"&img="+img,
+        type: "get",
+        dataType: "json",
+        success: function(data) {
+          tampilData()
+          alert(data.message)
+        },
+        error: function(err) {
+          alert('Terjadi kesalahan');
+          console.log(err);
+        }
+      })
+    }
+    // END MENGHAPUS
+
+    // TAMPILKAN DATA
+    function tampilData() {
+      let isiOrder = document.querySelector("#data-order");
+      if (isiOrder != null) {
+          let dtOrder = ''
+
+        // START AJAX
+        $.ajax({
+          type: 'get',
+          url: 'http://localhost/uasweb/tampil.php',
+          dataType: 'json',
+          success: function(data) {
+            // console.log(data);
+            let nomor = 0;
+            for(i in data.result) {
+              nomor++;
+              dtOrder +=
+              `
+              <tr>
+                <td class="text-center">${nomor}</td>
+                <td>${data.result[i].nama}</td>
+                <td>${data.result[i].keterangan}</td>
+                <td class="text-center">${data.result[i].tgl_masuk}</td>
+                <td class="text-center">${data.result[i].tgl_jadi}</td>
+                <td class="text-center"><a href="http://localhost/uasweb/assets/img/${data.result[i].referensi}" target="_blank" class="link-none btn-view">View</a></td>
+                <td class="text-center"><a href="http://localhost/uasweb/?id=${data.result[i].id}" class="btn-edit link-none">Edit</a> <a href="javascript:void(0)" onclick="deleteData(${data.result[i].id}, '${data.result[i].referensi}')" class="btn-delete link-none">Delete</a></td>
+              </tr>
+              `
+            }
+            isiOrder.innerHTML = dtOrder;
+          }
+
+        })
+        // END AJAX
+      }
+    }
+    // END TAMPILKAN DATA DARI DATABASE
+
+    // CEK LOG
+    const modal = document.querySelector('#myModal')
+    const buttonLog = document.querySelector('#btnLog')
+
+    let a = document.querySelectorAll('a');
+    for (let i = 0; i < a.length; i++) {
+      a[i].addEventListener("click", function() {
+        let nav = "";
+        if (!sessionStorage.getItem("login")) {
+          alert("Anda Belum Login!")
+        }
+      })
+    }
+
+    if (sessionStorage.getItem("login")) {
+      console.log("sudah login");
+      buttonLog.innerHTML = "Logout"
+      buttonLog.addEventListener("click", function() {
+        sessionStorage.removeItem("login")
+        buttonLog.innerHTML = "Login"
+      })
+    }
+
+    function cekLog() {
+      if (sessionStorage.getItem("login")) {
+        console.log("sudah login");
+        buttonLog.innerHTML = "Logout"
+      } else {
+        modal.style.display = "block"
+      }
+    }
+
+    function closeModal() {
+      modal.style.display = "none";
+    }
+
+    function setSession() {
+      let user = document.querySelector("input[name=username]").value
+      let pass = document.querySelector("input[name=pass]").value
+
+      if (sessionStorage.getItem("login")) {
+        console.log("sudah login");
+        buttonLog.innerHTML = "Logout"
+      } else {
+        if (user == "kangjahit" & pass == "admin") {
+          document.querySelector("#pesanLogin").innerHTML = ""
+          sessionStorage.setItem("login", "true")
+          document.querySelector("input[name=username]").value = ""
+          document.querySelector("input[name=pass]").value = ""
+          modal.style.display = "none";
+          buttonLog.innerHTML = "Logout";
+          buttonLog.addEventListener("click", function() {
+            sessionStorage.removeItem("login")
+            buttonLog.innerHTML = "Login"
+          })
+        } else {
+          document.querySelector("#pesanLogin").innerHTML = "<b style='color: red;'>Username/Password Salah</b>"
+        }
+      }
+    }
+    </script>
+  </body>
+</html>
