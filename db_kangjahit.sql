@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `data_order` (
   `tgl_jadi` date NOT NULL,
   `referensi` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- Membuang data untuk tabel db_kangjahit.data_order: ~0 rows (lebih kurang)
 /*!40000 ALTER TABLE `data_order` DISABLE KEYS */;
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(50) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- Membuang data untuk tabel db_kangjahit.users: ~0 rows (lebih kurang)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
