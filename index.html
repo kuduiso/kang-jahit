@@ -145,20 +145,31 @@
         console.log("sudah login");
         buttonLog.innerHTML = "Logout"
       } else {
-        if (user == "kangjahit" & pass == "admin") {
-          document.querySelector("#pesanLogin").innerHTML = ""
-          sessionStorage.setItem("login", "true")
-          document.querySelector("input[name=username]").value = ""
-          document.querySelector("input[name=pass]").value = ""
-          modal.style.display = "none";
-          buttonLog.innerHTML = "Logout";
-          buttonLog.addEventListener("click", function() {
-            sessionStorage.removeItem("login")
-            buttonLog.innerHTML = "Login"
-          })
-        } else {
-          document.querySelector("#pesanLogin").innerHTML = "<b style='color: red;'>Username/Password Salah</b>"
-        }
+        $.ajax({
+          url: 'http://localhost/uasweb/login.php',
+          type: 'post',
+          data: `username=${user}&password=${pass}`,
+          dataType: 'json',
+          success: function(data) {
+            if (data.login) {
+              document.querySelector("#pesanLogin").innerHTML = ""
+              sessionStorage.setItem("login", "true")
+              document.querySelector("input[name=username]").value = ""
+              document.querySelector("input[name=pass]").value = ""
+              modal.style.display = "none";
+              buttonLog.innerHTML = "Logout";
+              buttonLog.addEventListener("click", function() {
+                sessionStorage.removeItem("login")
+                buttonLog.innerHTML = "Login"
+              })
+            } else {
+              document.querySelector("#pesanLogin").innerHTML = "<b style='color: red;'>Username/Password Salah</b>"
+            }
+          },
+          error: function(err) {
+            console.log(err);
+          }
+        });
       }
     }
     </script>
