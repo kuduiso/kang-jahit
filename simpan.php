@@ -41,8 +41,9 @@ $size = $_FILES['file_ref']['size'];
     if (move_uploaded_file($_FILES['file_ref']['tmp_name'], $uploadFile)) {
       // JALANKAN QUERY DB
       // QUERY SIMPAN
-      $simpan = "INSERT INTO data_order(nama, keterangan, tgl_masuk, tgl_jadi, referensi) VALUES ('$nama', '$keterangan', '$tgl_masuk', '$tgl_jadi', '$newName')";
-      $result = $mysqli -> query($simpan);
+      $simpan = $mysqli->prepare("INSERT INTO data_order(nama, keterangan, tgl_masuk, tgl_jadi, referensi) VALUES (?, ?, ?, ?, ?)");
+      $simpan->bind_param('sssss',$nama, $keterangan, $tgl_masuk, $tgl_jadi, $newName);
+      $result = $simpan->execute();
 
       // SIMPAN KE DB
       if ($result) {

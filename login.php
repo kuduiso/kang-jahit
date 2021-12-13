@@ -6,6 +6,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 $data_login = $mysqli->query('SELECT username, password FROM users')->fetch_assoc();
+
 $login = [
   'login' => FALSE
 ];

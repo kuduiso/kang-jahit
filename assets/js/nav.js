@@ -140,7 +140,10 @@ document.addEventListener('DOMContentLoaded', function() {
               } else {
                 alert(data.msg_error.file);
               }
-            }
+            },
+            // error: function(err) {
+            //   console.log(err)
+            // }
           })
           // END AJAX
         }
@@ -287,6 +290,7 @@ document.addEventListener('DOMContentLoaded', function() {
             data: new FormData($("#formUpdate")[0]),
             dataType: 'json',
             success: function(data) {
+              console.log(data)
               if (typeof data.result != "undefined") {
                 let imgRef =
                 `

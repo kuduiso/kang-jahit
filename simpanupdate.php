@@ -43,10 +43,11 @@ if ($oldName != "") {
         // HAPUS FILE LAMA
         unlink($lokasi.$old_referensi);
 
-        // JALANKAN QUERY DB
+        // JALANKAN QUERY DB - MENGUBAH GAMBAR
         // QUERY SIMPAN
-        $ubah = "UPDATE data_order SET nama='$nama',keterangan='$keterangan',tgl_masuk= '$tgl_masuk',tgl_jadi='$tgl_jadi',referensi='$newName' WHERE id = $id";
-        $result = $mysqli -> query($ubah);
+        $ubah = $mysqli->prepare("UPDATE data_order SET nama= ?,keterangan= ?,tgl_masuk= ?,tgl_jadi= ?,referensi= ? WHERE id = ?");
+        $ubah->bind_param('sssssi', $nama, $keterangan, $tgl_masuk, $tgl_jadi, $newName, $id);
+        $result = $ubah->execute();
 
         // SIMPAN KE DB
         if ($result) {
@@ -81,17 +82,18 @@ if ($oldName != "") {
       }
     }
 } else {
-  // JALANKAN QUERY DB
+  // JALANKAN QUERY DB - TIDAK MENGUBAH GAMBAR
   // QUERY SIMPAN
-  $ubah = "UPDATE data_order SET nama='$nama',keterangan='$keterangan',tgl_masuk= '$tgl_masuk',tgl_jadi='$tgl_jadi' WHERE id = $id";
-  $result = $mysqli -> query($ubah);
+  $ubah = $mysqli->prepare("UPDATE data_order SET nama= ?,keterangan= ?,tgl_masuk= ?,tgl_jadi= ? WHERE id = ?");
+  $ubah->bind_param('ssssi', $nama, $keterangan, $tgl_masuk, $tgl_jadi, $id);
+  $result = $ubah->execute();
 
   // SIMPAN KE DB
   if ($result) {
     $data = [
       "message" => "berhasil diubah",
       "result" => [
-        "referensi" => ""
+        "referensi" => $old_referensi
       ]
     ];
     header("Content-Type: application/json");

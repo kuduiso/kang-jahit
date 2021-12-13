@@ -4,9 +4,12 @@ require_once('koneksi.php');
 
 $id = $_GET['id'];
 
-$ambilData = "SELECT * FROM data_order WHERE id = $id";
-$result = $mysqli->query($ambilData);
+$ambilData = $mysqli->prepare("SELECT * FROM data_order WHERE id = ?");
+$ambilData->bind_param('i', $id);
+$ambilData->execute();
+$result = $ambilData->get_result();
 $ls_order = [];
+
 
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
