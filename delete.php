@@ -6,16 +6,13 @@ $id = $_GET["id"];
 $img = $_GET["img"];
 $path_img = realpath("./assets/img/{$img}");
 
-$delete = $mysqli->prepare("DELETE FROM data_order WHERE id = ?");
-$delete->bind_param('i', $id);
-$result = $delete->execute();
-
 // REMOVE IMAGES FROM STORAGE
 $remove_img = unlink($path_img);
 
 if ($remove_img) {
-  $delete = "DELETE FROM data_order WHERE id = $id";
-  $result = $mysqli->query($delete);
+  $delete = $mysqli->prepare("DELETE FROM data_order WHERE id = ?");
+  $delete->bind_param('i', $id);
+  $result = $delete->execute();
   if ($result) {
     $data = [
       "message" => "Berhasil dihapus {$img}",
